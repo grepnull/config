@@ -1,0 +1,19 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+# all configurations are in ~/.bashrc.d/
+run_scripts()
+{
+    for script in $1/*; do
+
+        # skip non-executable snippets
+        [ -x "$script" ] || continue
+
+        # execute $script in the context of the current shell
+        . $script
+    done
+}
+
+run_scripts ~/.bashrc.d
