@@ -35,7 +35,14 @@ xterm*|rxvt*|screen*|linux*)
             VE="${INDIGO}<$(basename $VIRTUAL_ENV)>${NOCOLOR} "
         fi
 
-        PS1="${VE}${ROOTPREFIX}${RED}\h${NOCOLOR}:${BLUE}\w${ORANGE}$(__git_ps1 " %s")${NOCOLOR}\$ "
+        # Show a different color host if it's a remote host
+        local HOST_COLOR=$GREEN
+        local HOST=$(hostname -s)
+        if [ $HOST = 'Ra.local' ] || [ $HOST = 'vince-mac' ]; then
+            HOST_COLOR=$RED
+        fi
+
+        PS1="${VE}${ROOTPREFIX}${HOST_COLOR}\h${NOCOLOR}:${BLUE}\w${ORANGE}$(__git_ps1 " %s")${NOCOLOR}\$ "
     }
     update_terminal_cwd() {
         # Identify the directory using a "file:" scheme
