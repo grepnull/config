@@ -35,10 +35,10 @@ xterm*|rxvt*|screen*|linux*)
             VE="${INDIGO}<$(basename $VIRTUAL_ENV)>${NOCOLOR} "
         fi
 
-        # Show a different color host if it's a remote host
+        # Show a different color host if it's a remote host vs local
+        # assumes COMPUTER_NAME is set
         local HOST_COLOR=$GREEN
-        local HOST=$(hostname -s)
-        if [ $HOST = 'Ra.local' ] || [ $HOST = 'vince-mac' ]; then
+        if [ $COMPUTER_NAME = 'Ra' ]; then
             HOST_COLOR=$RED
         fi
 
