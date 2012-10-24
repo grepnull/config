@@ -38,7 +38,7 @@ xterm*|rxvt*|screen*|linux*)
         # Show a different color host if it's a remote host vs local
         # assumes COMPUTER_NAME is set
         local HOST_COLOR=$GREEN
-        if [ $COMPUTER_NAME ] && [ $COMPUTER_NAME = 'Ra' ]; then
+        if [ $MAC_NAME ] && [ $MAC_NAME = 'Ra' ]; then
             HOST_COLOR=$RED
         fi
 
