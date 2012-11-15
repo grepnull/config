@@ -9,8 +9,26 @@ if [ -f $BPREFIX/etc/bash_completion ]; then
     . $BPREFIX/etc/bash_completion
 fi
 
-if [ -f $BPREFIX/etc/autojump ]; then
-    . $BPREFIX/etc/autojump
+_git_switch ()
+{
+    __gitcomp_nl "$(__git_refs)"
+}
+
+_git_sw ()
+{
+    __gitcomp_nl "$(__git_refs)"
+}
+
+_switch ()
+{
+    COMPREPLY=( $(compgen -W "$(__git_refs)" -- ${cur}) )
+    return 0
+}
+
+complete -F _switch switch
+
+if [ -f $BPREFIX/etc/autojump.bash ]; then
+    . $BPREFIX/etc/autojump.bash
 fi
 
 if [ -f $BPREFIX/share/python/virtualenvwrapper.sh ]; then
