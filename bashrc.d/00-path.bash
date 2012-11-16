@@ -1,3 +1,4 @@
+
 function append_path() {
     local value=$1
     local var=${2:-PATH}
@@ -55,7 +56,6 @@ append_path /usr/local/share/man MANPATH
 append_path /usr/kerberos/man MANPATH
 
 append_path ~/bin PATH
-append_path /ext/build/build_ctrl/latest/best/src/build_ctrl/bin PATH
 append_path ~/Work/bin PATH
 append_path ~/Documents/bin PATH
 append_path /usr/bin PATH
