@@ -11,12 +11,12 @@ fi
 
 _git_switch ()
 {
-    __gitcomp_nl "$(__git_refs)"
+    __gitcomp_nl "$(__git_refs '' 1)"
 }
 
 _git_sw ()
 {
-    __gitcomp_nl "$(__git_refs)"
+    __gitcomp_nl "$(__git_refs '' 1)"
 }
 
 _switch ()
