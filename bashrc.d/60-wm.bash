@@ -20,7 +20,6 @@ alias gitproj='$WMPROJECT_SCRIPT -e -p ubuntu-10.04-64 --resolver=choosy -c $GIT
 alias gitprojext='$WMPROJECT_SCRIPT -e -p ubuntu-10.04-64 --resolver=choosy -c $GIT_WORKSPACE --nocache'
 alias projext="\`wmprojext ../project.xml\`"
 alias proj="\`wmproj ../project.xml\`"
-#alias gradle=$GRADLE_HOME/bin/gradle
 alias fixoldgradle='ssh build@build \"rm .gradle/caches/0.9-preview-3/*/cache.bin\"'
 function fixgradle() {
    ssh build@$1 "rm -rf /var/tmp/build/gradle/caches/"
@@ -41,6 +40,7 @@ function go() {
         echo "Refresh complete cache: go -r"
         return
     fi
+
     local repo=$1
 
     if [ $repo == '-r' ]; then
@@ -54,7 +54,8 @@ function go() {
         branch="-b $2"
     fi
 
-    git clone $branch git@git.locationlabs.com:$repo --recursive
+    git clone $branch git@git.locationlabs.com:$repo --recursive && \
+        find $repo -type d -name .git -exec git --git-dir={} config user.email vince@locationlabs.com \;
 }
 
 ### LL Misc ###
