@@ -2,7 +2,7 @@
 [ $(which lesspipe) ] && eval "$(lesspipe)"
 [ $(which lesspipe.sh) ] && eval "$(lesspipe.sh)"
 
-BPREFIX=''
+local BPREFIX='/usr/local'
 [ $(which brew) ] && BPREFIX=`brew --prefix`
 
 if [ -f $BPREFIX/etc/bash_completion ]; then
@@ -33,4 +33,6 @@ fi
 
 if [ -f $BPREFIX/share/python/virtualenvwrapper.sh ]; then
     . $BPREFIX/share/python/virtualenvwrapper.sh
+elif [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    . /usr/local/bin/virtualenvwrapper.sh
 fi
