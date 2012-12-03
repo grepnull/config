@@ -60,6 +60,7 @@ append_path ~/Work/bin PATH
 append_path ~/Documents/bin PATH
 append_path /usr/bin PATH
 append_path /usr/local/Cellar/ruby/1.9.3-p194/bin PATH
+append_path /usr/local/share/python PATH
 
 prepend_path /usr/local/bin PATH
 prepend_path /usr/local/sbin PATH

@@ -15,4 +15,5 @@ alias less=$PAGER
 alias zless=$PAGER
 alias e='emacs -nw'
 alias ipython='ipython --colors LightBG'
+alias ip='/usr/local/share/python/ipython --colors LightBG'
 function f () { find -L $@| grep -v \\.svn ; }
