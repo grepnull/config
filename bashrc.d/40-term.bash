@@ -42,7 +42,12 @@ xterm*|rxvt*|screen*|linux*)
             HOST_COLOR=$RED
         fi
 
-        PS1="${VE}${ROOTPREFIX}${HOST_COLOR}\h${NOCOLOR}:${BLUE}\w${ORANGE}$(__git_ps1 " %s")${NOCOLOR}\$ "
+        local GIT_PS1=''
+        if [ $(type -t __git_ps1) ]; then
+            local GIT_PS1="\w${ORANGE}$(__git_ps1 " %s")"
+        fi
+
+        PS1="${VE}${ROOTPREFIX}${HOST_COLOR}\h${NOCOLOR}:${BLUE}${GIT_PS1}${NOCOLOR}\$ "
     }
     update_terminal_cwd() {
         # Identify the directory using a "file:" scheme
