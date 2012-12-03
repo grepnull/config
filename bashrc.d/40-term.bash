@@ -44,10 +44,10 @@ xterm*|rxvt*|screen*|linux*)
 
         local GIT_PS1=''
         if [ $(type -t __git_ps1) ]; then
-            local GIT_PS1="\w${ORANGE}$(__git_ps1 " %s")"
+            local GIT_PS1="${ORANGE}$(__git_ps1 " %s")${NOCOLOR}"
         fi
 
-        PS1="${VE}${ROOTPREFIX}${HOST_COLOR}\h${NOCOLOR}:${BLUE}${GIT_PS1}${NOCOLOR}\$ "
+        PS1="${VE}${ROOTPREFIX}${HOST_COLOR}\h${NOCOLOR}:${BLUE}\w${NOCOLOR}${GIT_PS1}\$ "
     }
     update_terminal_cwd() {
         # Identify the directory using a "file:" scheme
