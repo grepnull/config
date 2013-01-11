@@ -26,6 +26,15 @@ function fixgradle() {
 }
 alias fixl64build1='fixgradle l64build1'
 
+function revertBest() {
+   if [ -z $1 ] || [ -z $2 ] || [ $3 ]; then
+      echo "Usage: $0 <project name> <project version>"
+      return
+   fi
+
+   ssh build@build "cd /ext/build/$1/$2/ && rm best && ln -s latest best"
+}
+
 if [ $(hostname) == 'vince' ]; then
     alias rt='sudo /etc/init.d/tomcat restart'
     alias fixssh='source $HOME/bin/fixssh'
