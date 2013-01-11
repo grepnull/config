@@ -32,6 +32,15 @@ function revertBest() {
       return
    fi
 
+   local proj=$1
+   local vers=$2
+   local path="/ext/build/$proj/$vers"
+
+   if [ `ssh build@build readlink $path/best` == "latest" ]; then
+       echo "$proj $vers best is already pointing to latest"
+       return
+   fi
+
    ssh build@build "cd /ext/build/$1/$2/ && rm best && ln -s latest best"
 }
 
