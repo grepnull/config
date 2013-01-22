@@ -52,6 +52,19 @@ else
     alias rt='ssh root@vince /etc/init.d/tomcat restart'
 fi
 
+function sshconfmerge() {
+    local tmp=$(mktemp -d /tmp/svn.XXXX)
+    pushd $tmp > /dev/null
+    echo "Retrieving latest sshconfmerge"
+    svn export svn://svn/wm/sys/ssh
+    cd ssh
+    echo "Running sshconfmerge"
+    ./sshconfmerge
+    echo "Done"
+    popd > /dev/null
+    rm -rf $tmp
+}
+
 function go() {
     if [ -z $1 ]; then
         echo "Usage: go <repository> [branch]"
