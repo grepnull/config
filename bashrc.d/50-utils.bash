@@ -5,9 +5,12 @@
 local BPREFIX='/usr/local'
 [ $(which brew) ] && BPREFIX=`brew --prefix`
 
-if [ -f $BPREFIX/etc/bash_completion ]; then
-    . $BPREFIX/etc/bash_completion
-fi
+function _bash_completion() {
+    if [ -f $BPREFIX/etc/bash_completion ]; then
+        . $BPREFIX/etc/bash_completion
+    fi
+}
+_bash_completion
 
 _git_switch ()
 {

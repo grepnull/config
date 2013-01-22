@@ -61,6 +61,7 @@ function sshconfmerge() {
     echo "Running sshconfmerge"
     ./sshconfmerge
     echo "Done"
+    _bash_completion
     popd > /dev/null
     rm -rf $tmp
 }
