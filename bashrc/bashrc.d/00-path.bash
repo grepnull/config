@@ -1,4 +1,3 @@
-
 function append_path() {
     local value=$1
     local var=${2:-PATH}
@@ -59,7 +58,7 @@ append_path ~/bin PATH
 append_path ~/Work/bin PATH
 append_path ~/Documents/bin PATH
 append_path /usr/bin PATH
-append_path /usr/local/Cellar/ruby/1.9.3-p194/bin PATH
+append_path /usr/local/opt/ruby/bin PATH
 append_path /usr/local/share/python PATH
 
 prepend_path /usr/local/bin PATH
