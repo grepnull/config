@@ -11,8 +11,10 @@ function svns() {
    svn status --ignore-externals ${dir} | grep -v ^X
 }
 alias td='sudo tcpdump -A -s0 -i any port'
-alias less=$PAGER
-alias zless=$PAGER
+if [ $PAGER ]; then
+    alias less=$PAGER
+    alias zless=$PAGER
+fi
 alias e='emacs -nw'
 alias ipython='ipython --colors LightBG'
 alias ip='/usr/local/share/python/ipython --colors LightBG'
