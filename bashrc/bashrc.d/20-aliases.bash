@@ -19,3 +19,11 @@ alias e='emacsclient -t'
 alias ipython='ipython --colors LightBG'
 alias ip='/usr/local/share/python/ipython --colors LightBG'
 function f () { find -L $@| grep -v \\.svn ; }
+function emacs-check() {
+    if pgrep -f 'emacs --daemon' &> /dev/null; then
+        emacsclient -t $@
+    else
+        emacs $@
+    fi
+}
+alias emacs='emacs-check'
