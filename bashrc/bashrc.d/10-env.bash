@@ -26,4 +26,6 @@ if [ $MAC_NAME ]; then
     export HOMEBREW_TEMP=/var/tmp
 
     export JYTHON_HOME=/usr/local/opt/jython/libexec/
+
+    export EDITOR='emacsclient -t'
 fi
