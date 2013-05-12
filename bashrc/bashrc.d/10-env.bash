@@ -1,4 +1,6 @@
-if command -v emacs &> /dev/null; then
+if command -v emacsclient &> /dev/null; then
+    export EDITOR='emacsclient -t -a emacs'
+elif command -v emacs &> /dev/null; then
     export EDITOR='emacs -nw'
 fi
 
@@ -26,6 +28,4 @@ if [ $MAC_NAME ]; then
     export HOMEBREW_TEMP=/var/tmp
 
     export JYTHON_HOME=/usr/local/opt/jython/libexec/
-
-    export EDITOR='emacsclient -t'
 fi
