@@ -29,3 +29,5 @@ if [ $MAC_NAME ]; then
 
     export JYTHON_HOME=/usr/local/opt/jython/libexec/
 fi
+
+export GOPATH=~/.go

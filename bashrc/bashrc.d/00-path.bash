@@ -59,11 +59,14 @@ append_path ~/Work/bin PATH
 append_path ~/Documents/bin PATH
 append_path /usr/bin PATH
 append_path /usr/local/opt/ruby/bin PATH
-append_path /usr/local/share/python PATH
+#append_path /usr/local/share/python PATH
+append_path ~/.go/bin PATH
+append_path $HOME/.rvm/bin # Add RVM to PATH for scripting
 
 prepend_path /usr/local/bin PATH
 prepend_path /usr/local/sbin PATH
 prepend_path /opt/alternatives/bin PATH
+
 if [ $GRADLE_HOME ]; then
     prepend_path $GRADLE_HOME/bin PATH
 fi

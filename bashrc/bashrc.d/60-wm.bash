@@ -1,6 +1,6 @@
 ### LL Environment ###
 export WM_HOME=/opt/wm
-export WMPROJECT_SCRIPT=~/Work/svn/project/build_ctrl/trunk/build_ctrl/bin/wm-project.py
+export WMPROJECT_SCRIPT=~/Work/svn/build_ctrl/build_ctrl/bin/wm-project.py
 export WORKSPACE_DIR=/Users/vince/Work/svn/project
 export GIT_WORKSPACE=/Users/vince/Work/git
 export WAVE_PLATFORM_VERSION=10.04-64
@@ -66,10 +66,10 @@ function sshconfmerge() {
     rm -rf $tmp
 }
 
-function go() {
+function gc() {
     if [ -z $1 ]; then
-        echo "Usage: go <repository> [branch]"
-        echo "Refresh complete cache: go -r"
+        echo "Usage: $FUNCNAME <repository> [branch]"
+        echo "Refresh complete cache: $FUNCNAME -r"
         return
     fi
 
@@ -77,6 +77,7 @@ function go() {
 
     if [ $repo == '-r' ]; then
         rm -f /tmp/gitrepos
+        _git-repos-refresh
         echo "git clone completion cache reset"
         return
     fi
@@ -88,6 +89,15 @@ function go() {
 
     git clone $branch git@git.locationlabs.com:$repo --recursive && \
         find $repo -type d -name .git -exec git --git-dir={} config user.email vince@locationlabs.com \;
+
+    if [ $? -ne 0 ]; then
+        echo "Not in git. Trying svn."
+        branch="trunk"
+        if [ ! -z $2 ]; then
+            branch="branches/$2"
+        fi
+        svn co svn+ssh://svn/wm/project/$repo/$branch $repo
+    fi
 }
 
 ### LL Misc ###
@@ -216,6 +226,14 @@ function _git-project()
 
 complete -F _git-project git-project
 
+function _git-repos-refresh()
+{
+    local gr=/tmp/gitrepos
+    if [[ ! -e $gr || $(/usr/bin/find $gr -mtime +7d 2> /dev/null) ]]; then
+        ssh -q git@git.locationlabs.com | grep "     R" | awk -v RS='\r' '{print $NF}' > $gr
+    fi
+}
+
 function _git-repos()
 {
     local cur prev opts
@@ -223,17 +241,15 @@ function _git-repos()
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
 
+    _git-repos-refresh
     local gr=/tmp/gitrepos
-    if [[ ! -e $gr || $(/usr/bin/find $gr -mtime +1d 2> /dev/null) ]]; then
-        ssh -q git@git.locationlabs.com | grep "     R" | awk -v RS='\r' '{print $NF}' > $gr
-    fi
     opts=`cat $gr`
 
     COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
     return 0
 }
 
-complete -F _git-repos go
+complete -F _git-repos gc
 
 # vince.engr.wm.com outputs the list of installed tomcat apps into dropbox
 # every minute or so. This adds it into the bash completion to easily remotely
