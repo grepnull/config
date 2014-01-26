@@ -1,0 +1,54 @@
+[user]
+	name = vince rosso
+	email = vince@locationlabs.com
+[core]
+	excludesfile = /Users/vince/.gitignore_global
+	ignorecase = true
+	whitespace = trailing-space,space-before-tab,tab-in-indent,tabwidth=3
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[alias]
+	co = checkout
+        switch = !switch $1
+        sw = !switch $1
+        sui = submodule update --init
+	lg = log --name-status --date=local
+        aliases = "!git config -l | grep alias | cut -c 7-"
+	ksreview = "!f() { local SHA=${1:-HEAD}; local BRANCH=${2:-master}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool -y -t Kaleidoscope $BRANCH...$SHA; }; f"
+	br = branch -vv
+[color]
+	ui = always
+[fetch]
+[grep]
+	lineNumber = true
+[help]
+	autocorrect = 20
+[mergetool "diffmerge"]
+	cmd = diffmerge --merge --result=$MERGED $LOCAL $BASE $REMOTE
+	trustExitCode = true
+[mergetool "kdiff3mac"]
+	path = /Applications/kdiff3.app/Contents/MacOS/kdiff3
+	trustexitcode = false
+[mergetool "kdiff3"]
+	path = /Applications/kdiff3.app/Contents/MacOS/kdiff3
+[mergetool "p4merge"]
+	   cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+	   keepTemporaries = false
+	   trustExitCode = false
+	   keepBackup = false
+[push]
+	default = upstream
+[rerere]
+	enabled = true
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+[git-up "rebase"]
+	post-rebase-hook = "echo \"updating submodules on $1\"; git submodule update --init"
+[diff]
+	algorithm = histogram

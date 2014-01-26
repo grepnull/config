@@ -1,0 +1,7 @@
+*.iml
+*.ipr
+*.iws
+*.pyc
+.gradle
+.autoDep*
+.DS_Store
