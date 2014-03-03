@@ -60,6 +60,16 @@ xterm*|rxvt*|screen*|linux*)
         local PWD_URL="file://$HOSTNAME${PWD//$SEARCH/$REPLACE}"
         printf '\e]7;%s\a' "$PWD_URL"
     }
+    update_ssh_auth_sock() {
+        # for reattaching tmux sessions, find a working ssh-agent socket. If there's
+        # more than one, just pick the first (unlikely to actually happen)
+        # only do this if we're not a mac. netstat hangs there. That's ok
+        # since my ssh-agent originates on a mac and I currently never
+        # need it when ssh-ing to another mac.
+        if [ -z "$MAC_NAME" ]; then
+            export SSH_AUTH_SOCK=`netstat -a |egrep -o "/tmp/ssh-.*/agent.*" | head -1`
+        fi
+    }
 
     # __git_ps1 options
     export GIT_PS1_SHOWDIRTYSTATE=true
@@ -67,25 +77,8 @@ xterm*|rxvt*|screen*|linux*)
     export GIT_PS1_SHOWSTASHSTATE=true
     export GIT_PS1_SHOWUPSTREAM="git, verbose"
 
-    PROMPT_COMMAND="update_terminal_cwd; update_title; update_prompt; $PROMPT_COMMAND"
+    PROMPT_COMMAND="update_terminal_cwd; update_title; update_prompt; update_ssh_auth_sock; $PROMPT_COMMAND"
     ;;
 *)
     ;;
 esac
-
-# old function for getting git info. Now built into __git_ps1
-#git_extra () {
-#        # first check whether we're in a git repo at all
-#    if ! git rev-parse --git-dir > /dev/null 2>&1; then
-#	return 0
-#    fi
-#
-#    local GIT_EXTRA=''
-#
-#        # any uncommitted changes?
-#    if ! git diff --quiet 2>/dev/null >&2; then
-#	GIT_EXTRA="${GIT_EXTRA} *"
-#    fi
-#
-#    echo "$GIT_EXTRA"
-#}

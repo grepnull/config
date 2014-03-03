@@ -39,3 +39,11 @@ if [ -f $BPREFIX/share/python/virtualenvwrapper.sh ]; then
 elif [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     . /usr/local/bin/virtualenvwrapper.sh
 fi
+
+# http://pempek.net/articles/2013/04/24/vpn-less-persistent-ssh-sessions/
+function rtmux {
+    case "$2" in
+        "") autossh -M 0 $1 -t "if tmux -qu has; then tmux -qu attach; else EDITOR=vim tmux -qu new; fi";;
+        *) autossh -M 0 $1 -t "if tmux -qu has -t $2; then tmux -qu attach -t $2; else EDITOR=vim tmux -qu new -s $2; fi";;
+    esac
+}

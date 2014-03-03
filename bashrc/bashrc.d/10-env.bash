@@ -25,7 +25,9 @@ if [ $MAC_NAME ]; then
     export JAVA_HOME=`/usr/libexec/java_home -v 1.6`
     # Groovy on the mac defaults to MacRoman encoding
     export JAVA_OPTS=-Dfile.encoding=UTF-8
+
     export HOMEBREW_TEMP=/var/tmp
+    export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
     export JYTHON_HOME=/usr/local/opt/jython/libexec/
 fi
