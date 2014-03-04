@@ -67,7 +67,8 @@ xterm*|rxvt*|screen*|linux*)
         # since my ssh-agent originates on a mac and I currently never
         # need it when ssh-ing to another mac.
         if [ -z "$MAC_NAME" ]; then
-            export SSH_AUTH_SOCK=`netstat -a |egrep -o "/tmp/ssh-.*/agent.*" | head -1`
+            local SSH_SOCK_NAME=`ls -lt /tmp | grep vince | egrep -o "ssh-.*" | head -1`
+            export SSH_AUTH_SOCK=`ls /tmp/$SSH_SOCK_NAME/* | head -1`
         fi
     }
 
