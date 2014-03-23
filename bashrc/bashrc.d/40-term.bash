@@ -68,7 +68,9 @@ xterm*|rxvt*|screen*|linux*)
         # need it when ssh-ing to another mac.
         if [ -z "$MAC_NAME" ]; then
             local SSH_SOCK_NAME=`ls -lt /tmp | grep vince | egrep -o "ssh-.*" | head -1`
-            export SSH_AUTH_SOCK=`ls /tmp/$SSH_SOCK_NAME/* | head -1`
+            if [ $SSH_SOCK_NAME ]; then
+                export SSH_AUTH_SOCK=`ls /tmp/$SSH_SOCK_NAME/* | head -1`
+            fi
         fi
     }
 
