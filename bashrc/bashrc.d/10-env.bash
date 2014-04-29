@@ -33,3 +33,4 @@ if [ $MAC_NAME ]; then
 fi
 
 export GOPATH=~/.go
+export PEBBLE_PHONE=10.0.1.102
