@@ -88,7 +88,7 @@ function gc() {
     fi
 
     git clone $branch git@git.locationlabs.com:$repo --recursive && \
-        find $repo -type d -name .git -exec git --git-dir={} config user.email vince@locationlabs.com \;
+        find $(basename $repo) -type d -name .git -exec git --git-dir={} config user.email vince@locationlabs.com \;
 
     if [ $? -ne 0 ]; then
         echo "Not in git. Trying svn."
@@ -98,6 +98,8 @@ function gc() {
         fi
         svn co svn+ssh://svn/wm/project/$repo/$branch $repo
     fi
+
+    cd $(basename $repo)
 }
 
 ### LL Misc ###
