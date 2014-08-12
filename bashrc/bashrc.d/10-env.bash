@@ -30,6 +30,8 @@ if [ $MAC_NAME ]; then
     export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
     export JYTHON_HOME=/usr/local/opt/jython/libexec/
+
+    export DOCKER_HOST=tcp://localhost:2375
 fi
 
 export GOPATH=~/.go
