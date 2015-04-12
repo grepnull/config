@@ -30,8 +30,8 @@ _switch ()
 
 complete -F _switch switch
 
-if [ -f $BPREFIX/etc/autojump.bash ]; then
-    . $BPREFIX/etc/autojump.bash
+if [ -f $BPREFIX/etc/autojump.sh ]; then
+    . $BPREFIX/etc/autojump.sh
 fi
 
 if [ -f $BPREFIX/share/python/virtualenvwrapper.sh ]; then
@@ -48,4 +48,10 @@ function rtmux {
     esac
 }
 
-source $(brew --prefix nvm)/nvm.sh
+#export NVM_DIR=~/.nvm
+#source $(brew --prefix nvm)/nvm.sh
+
+if which pyenv > /dev/null; then
+    eval "$(pyenv init -)";
+    pyenv virtualenvwrapper
+fi

@@ -53,3 +53,17 @@
 	post-rebase-hook = "echo \"updating submodules on $1\"; git submodule update --init"
 [diff]
 	algorithm = histogram
+	tool = kdiff3
+[merge]
+	tool = kdiff3
+[url "git://git.locationlabs.com/"]
+     insteadOf = "git@git.locationlabs.com:"
+
+[url "git@git.locationlabs.com:"]
+     pushInsteadOf = "git@git.locationlabs.com:"
+
+[url "git://git/"]
+     insteadOf = "git@git:"
+
+[url "git@git:"]
+     pushInsteadOf = "git@git:"

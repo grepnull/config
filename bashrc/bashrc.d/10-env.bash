@@ -32,6 +32,10 @@ if [ $MAC_NAME ]; then
     export JYTHON_HOME=/usr/local/opt/jython/libexec/
 
     export DOCKER_HOST=tcp://localhost:2375
+
+    export ANT_HOME=`dirname $(dirname $(readlink -f $(which ant)))`
+
+    export HOMEBREW_GITHUB_API_TOKEN=e6ca337e8d174f7ed7586359c911c623fab2b020
 fi
 
 export GOPATH=~/.go
