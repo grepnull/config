@@ -1,5 +1,6 @@
+export EDITOR='vi'
 if command -v emacsclient &> /dev/null; then
-    export EDITOR='emacsclient -t -a emacs'
+    export EDITOR='emacsclient -t -a vi'
 elif command -v emacs &> /dev/null; then
     export EDITOR='emacs -nw'
 fi
@@ -22,7 +23,7 @@ fi
 
 if [ $MAC_NAME ]; then
     ### Java on the Mac ###
-    export JAVA_HOME=`/usr/libexec/java_home -v 1.6`
+    export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
     # Groovy on the mac defaults to MacRoman encoding
     export JAVA_OPTS=-Dfile.encoding=UTF-8
 
@@ -39,4 +40,5 @@ if [ $MAC_NAME ]; then
 fi
 
 export GOPATH=~/.go
+append_path $GOPATH
 export PEBBLE_PHONE=10.0.1.102

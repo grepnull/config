@@ -2,7 +2,6 @@
 [ $(which lesspipe) ] && eval "$(lesspipe)"
 [ $(which lesspipe.sh) ] && eval "$(lesspipe.sh)"
 
-local BPREFIX='/usr/local'
 [ $(which brew) ] && BPREFIX=`brew --prefix`
 
 function _bash_completion() {
@@ -48,10 +47,21 @@ function rtmux {
     esac
 }
 
+function dock {
+    if [ "$1" == "-h" ]; then
+        echo "Usage: dock NAME [--swarm]"
+        echo ""
+        echo "NAME: name of docker-machine (Default: local)"
+        echo "--swarm: machine is a swarm"
+        return
+    fi
+    local MACHINE=${1:-local}
+    echo "Switching to docker machine $MACHINE"
+    eval $(docker-machine env $MACHINE $2)
+}
+
 #export NVM_DIR=~/.nvm
 #source $(brew --prefix nvm)/nvm.sh
 
-if which pyenv > /dev/null; then
-    eval "$(pyenv init -)";
-    pyenv virtualenvwrapper
-fi
+# for awscli
+complete -C aws_completer aws

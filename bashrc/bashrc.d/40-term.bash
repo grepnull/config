@@ -38,7 +38,7 @@ xterm*|rxvt*|screen*|linux*)
         # Show a different color host if it's a remote host vs local
         # assumes COMPUTER_NAME is set
         local HOST_COLOR=$GREEN
-        if [ $MAC_NAME ] && [ $MAC_NAME = 'Ra' ]; then
+        if [ "$MAC_NAME" ] && [ "$MAC_NAME" = 'Ra' ]; then
             HOST_COLOR=$RED
         fi
 
@@ -80,7 +80,7 @@ xterm*|rxvt*|screen*|linux*)
     export GIT_PS1_SHOWSTASHSTATE=true
     export GIT_PS1_SHOWUPSTREAM="git, verbose"
 
-    PROMPT_COMMAND="update_terminal_cwd; update_title; update_prompt; update_ssh_auth_sock; $PROMPT_COMMAND"
+    PROMPT_COMMAND="update_terminal_cwd; update_title; update_prompt; update_ssh_auth_sock"
     ;;
 *)
     ;;

@@ -21,3 +21,7 @@ alias ip='/usr/local/share/python/ipython --colors LightBG'
 function f () { find -L $@| grep -v \\.svn ; }
 
 alias emacs=$EDITOR
+alias d=docker
+alias dm=docker-machine
+alias dc=docker-compose
+alias ds=docker-swarm
