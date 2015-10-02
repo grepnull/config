@@ -62,7 +62,7 @@ append_path /usr/local/opt/ruby/bin PATH
 #append_path /usr/local/share/python PATH
 append_path ~/.go/bin PATH
 append_path $HOME/.rvm/bin # Add RVM to PATH for scripting
-
+append_path $HOME/.gem/ruby/2.2.0/bin/
 prepend_path /usr/local/bin PATH
 prepend_path /usr/local/sbin PATH
 prepend_path /opt/alternatives/bin PATH
