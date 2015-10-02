@@ -21,7 +21,7 @@ if [ -e /usr/sbin/scutil ]; then
     export MAC_NAME=$(/usr/sbin/scutil --get ComputerName)
 fi
 
-if [ $MAC_NAME ]; then
+if [ "${MAC_NAME}" ]; then
     ### Java on the Mac ###
     export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
     # Groovy on the mac defaults to MacRoman encoding
