@@ -9,7 +9,7 @@ export WAVE_PLATFORM_TYPE="ubuntu"
 export BUILD_TOOLS_HOME=$GIT_WORKSPACE/common/build_tools
 # Gradle #
 export GRADLE_COMMON=$BUILD_TOOLS_HOME/gradle_common
-export GRADLE_HOME="$(readlink -f /usr/local/bin/gradle)/../../.."
+export GRADLE_HOME="$(greadlink -f /usr/local/bin/gradle)/../../.."
 export GRADLE_OPTS="-Dorg.gradle.daemon=true"
 
 ### LL Aliases ###
