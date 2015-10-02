@@ -58,11 +58,13 @@ append_path ~/bin PATH
 append_path ~/Work/bin PATH
 append_path ~/Documents/bin PATH
 append_path /usr/bin PATH
-append_path /usr/local/opt/ruby/bin PATH
 #append_path /usr/local/share/python PATH
 append_path ~/.go/bin PATH
-append_path $HOME/.rvm/bin # Add RVM to PATH for scripting
-append_path $HOME/.gem/ruby/2.2.0/bin/
+if which ruby >/dev/null && which gem >/dev/null; then
+    #append_path /usr/local/opt/ruby/bin PATH
+    append_path $(ruby -rubygems -e 'puts Gem.user_dir')bin/
+    append_path $HOME/.rvm/bin # Add RVM to PATH for scripting
+fi
 prepend_path /usr/local/bin PATH
 prepend_path /usr/local/sbin PATH
 prepend_path /opt/alternatives/bin PATH
