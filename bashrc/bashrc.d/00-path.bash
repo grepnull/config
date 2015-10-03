@@ -60,10 +60,11 @@ append_path ~/Documents/bin PATH
 append_path /usr/bin PATH
 #append_path /usr/local/share/python PATH
 append_path ~/.go/bin PATH
-if which ruby >/dev/null && which gem >/dev/null; then
-    #append_path /usr/local/opt/ruby/bin PATH
-    append_path $(ruby -rubygems -e 'puts Gem.user_dir')bin/
-    append_path $HOME/.rvm/bin # Add RVM to PATH for scripting
+if which ruby >/dev/null && which gem >/dev/null && [ ! -s "$HOME/.rvm/scripts/rvm" ]; then
+    #append_path /usr/local/opt/ruby/bin PATH # what was this for?
+
+    # if we don't have rvm, add ruby's gems to PATH
+    append_path "$(ruby -rubygems -e 'puts Gem.user_dir')/bin/"
 fi
 prepend_path /usr/local/bin PATH
 prepend_path /usr/local/sbin PATH
