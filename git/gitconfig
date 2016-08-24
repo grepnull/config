@@ -57,17 +57,6 @@
 	tool = kdiff3
 [merge]
 	tool = kdiff3
-[url "git://git.locationlabs.com/"]
-     insteadOf = "git@git.locationlabs.com:"
-
-[url "git@git.locationlabs.com:"]
-     pushInsteadOf = "git@git.locationlabs.com:"
-
-[url "git://git/"]
-     insteadOf = "git@git:"
-
-[url "git@git:"]
-     pushInsteadOf = "git@git:"
 [release "finish"]
 	nobackmerge = yes
 [gitflow "release.finish"]
