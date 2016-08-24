@@ -38,8 +38,13 @@ xterm*|rxvt*|screen*|linux*)
         # Show a different color host if it's a remote host vs local
         # assumes COMPUTER_NAME is set
         local HOST_COLOR=$GREEN
-        if [ "$MAC_NAME" ] && [ "$MAC_NAME" = 'Ra' ]; then
+        if [ "$MAC_NAME" ] && [ "$MAC_NAME" = 'McFly' ]; then
             HOST_COLOR=$RED
+        fi
+
+        local MY_HOST=$HOSTNAME
+        if [ "$MAC_NAME" ]; then
+            MY_HOST=$MAC_NAME
         fi
 
         local GIT_PS1=''
@@ -47,7 +52,7 @@ xterm*|rxvt*|screen*|linux*)
             local GIT_PS1="${ORANGE}$(__git_ps1 " %s")${NOCOLOR}"
         fi
 
-        PS1="${VE}${ROOTPREFIX}${HOST_COLOR}\h${NOCOLOR}:${BLUE}\w${NOCOLOR}${GIT_PS1}\$ "
+        PS1="${VE}${ROOTPREFIX}${HOST_COLOR}${MY_HOST}${NOCOLOR}:${BLUE}\w${NOCOLOR}${GIT_PS1}\$ "
     }
     update_terminal_cwd() {
         # Identify the directory using a "file:" scheme

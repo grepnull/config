@@ -2,12 +2,9 @@ function append_path() {
     local value=$1
     local var=${2:-PATH}
 
-    if [ ! -d $1 ]; then
-        return;
-    fi
-
     for part in `echo ${!var} | tr ':' ' '`; do
         if [ "$part" = $value ]; then
+            echo $value
             return;
         fi
     done
@@ -22,10 +19,6 @@ function append_path() {
 function prepend_path() {
     local value=$1
     local var=${2:-PATH}
-
-    if [ ! -d $1 ]; then
-        return;
-    fi
 
     # remove from path if already existing
     local newpath=''
@@ -57,14 +50,12 @@ append_path /usr/kerberos/man MANPATH
 append_path ~/bin PATH
 append_path ~/Work/bin PATH
 append_path ~/Documents/bin PATH
-append_path /usr/bin PATH
 #append_path /usr/local/share/python PATH
-append_path ~/.go/bin PATH
 if which ruby >/dev/null && which gem >/dev/null && [ ! -s "$HOME/.rvm/scripts/rvm" ]; then
     #append_path /usr/local/opt/ruby/bin PATH # what was this for?
 
     # if we don't have rvm, add ruby's gems to PATH
-    append_path "$(ruby -rubygems -e 'puts Gem.user_dir')/bin/"
+    append_path "$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
 fi
 prepend_path /usr/local/bin PATH
 prepend_path /usr/local/sbin PATH

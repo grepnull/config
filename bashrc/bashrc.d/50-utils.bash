@@ -60,6 +60,16 @@ function dock {
     eval $(docker-machine env $MACHINE $2)
 }
 
+function gradle {
+    if [ -e ./gradlew ]; then
+        echo "Using gradle wrapper..."
+        ./gradlew $@
+    else
+        echo "Using global gradle..."
+        /usr/local/bin/gradle $@
+    fi
+}
+
 #export NVM_DIR=~/.nvm
 #source $(brew --prefix nvm)/nvm.sh
 

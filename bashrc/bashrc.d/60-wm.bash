@@ -12,6 +12,8 @@ export GRADLE_COMMON=$BUILD_TOOLS_HOME/gradle_common
 export GRADLE_HOME="$(greadlink -f /usr/local/bin/gradle)/../../.."
 export GRADLE_OPTS="-Dorg.gradle.daemon=true"
 
+export AWS_PROFILE=stallone-dev-admin
+
 ### LL Aliases ###
 
 alias wmproj='$WMPROJECT_SCRIPT -e -p ubuntu-10.04-64 --resolver=choosy -c $WORKSPACE_DIR --trylocal --nocache'
@@ -231,8 +233,8 @@ complete -F _git-project git-project
 function _git-repos-refresh()
 {
     local gr=/tmp/gitrepos
-    if [[ ! -e $gr || $(/usr/bin/find $gr -mtime +7d 2> /dev/null) ]]; then
-        ssh -q git@git.locationlabs.com | grep "     R" | awk -v RS='\r' '{print $NF}' > $gr
+    if [[ ! -e $gr || $(/usr/bin/find $gr -mtime +1d 2> /dev/null) ]]; then
+        ssh -q git@git.locationlabs.com repolist > $gr
     fi
 }
 

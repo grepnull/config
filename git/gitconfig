@@ -1,6 +1,6 @@
 [user]
 	name = vince rosso
-	email = v@grepnull.com
+	useconfigonly = true
 [core]
 	excludesfile = /Users/vince/.gitignore_global
 	ignorecase = true
@@ -43,6 +43,7 @@
 	   keepBackup = false
 [push]
 	default = upstream
+	followTags = true
 [rerere]
 	enabled = true
 [difftool "Kaleidoscope"]
@@ -67,3 +68,11 @@
 
 [url "git@git:"]
      pushInsteadOf = "git@git:"
+[release "finish"]
+	nobackmerge = yes
+[gitflow "release.finish"]
+	nobackmerge = yes
+[fetch]
+	prune = true
+[url "git@github.com:"]
+	insteadOf = https://github.com/

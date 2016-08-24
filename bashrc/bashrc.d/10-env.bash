@@ -23,7 +23,7 @@ fi
 
 if [ "${MAC_NAME}" ]; then
     ### Java on the Mac ###
-    export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+    export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
     # Groovy on the mac defaults to MacRoman encoding
     export JAVA_OPTS=-Dfile.encoding=UTF-8
 
@@ -36,9 +36,13 @@ if [ "${MAC_NAME}" ]; then
 
     export ANT_HOME=`dirname $(dirname $(greadlink -f $(which ant)))`
 
-    export HOMEBREW_GITHUB_API_TOKEN=e6ca337e8d174f7ed7586359c911c623fab2b020
+    export HOMEBREW_GITHUB_API_TOKEN=e4e924568100ea79e1d3e2ee6fe0f69f9ad91b30
+
+    export ITERM_PANE_INDEX=$(($(echo $ITERM_SESSION_ID | sed -e "s/^.*p\(.*\):.*/\1/") - 1))
+    export ITI=$ITERM_PANE_INDEX
 fi
 
+export ACK_OPTIONS="--ignore-dir=.eggs --ignore-dir=.tox"
+
 export GOPATH=~/.go
-append_path $GOPATH
-export PEBBLE_PHONE=10.0.1.102
+append_path $GOPATH/bin
