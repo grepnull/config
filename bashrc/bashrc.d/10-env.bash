@@ -34,7 +34,9 @@ if [ "${MAC_NAME}" ]; then
 
     export DOCKER_HOST=tcp://localhost:2375
 
-    export ANT_HOME=`dirname $(dirname $(greadlink -f $(which ant)))`
+    if command -v ant; then
+        export ANT_HOME=`dirname $(dirname $(greadlink -f $(which ant)))`
+    fi
 
     export HOMEBREW_GITHUB_API_TOKEN=e4e924568100ea79e1d3e2ee6fe0f69f9ad91b30
 
