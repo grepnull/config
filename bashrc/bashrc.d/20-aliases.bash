@@ -16,7 +16,6 @@ if [ $PAGER ]; then
     alias zless=$PAGER
 fi
 alias e='emacsclient -t'
-alias ipython='ipython --colors LightBG'
 alias ip='/usr/local/share/python/ipython --colors LightBG'
 function f () { find -L $@| grep -v \\.svn ; }
 
@@ -25,4 +24,14 @@ alias d=docker
 alias dm=docker-machine
 alias dc=docker-compose
 alias ds=docker-swarm
-alias ssh="assh wrapper ssh"
+
+if command -v assh &> /dev/null; then
+    alias ssh="assh wrapper ssh"
+fi
+
+if command -v ack-grep &> /dev/null; then
+    # not on a mac
+    alias ack=ack-grep
+    alias pbpaste='ssh 172.16.131.33 pbpaste'
+    alias pbcopy='ssh 172.16.131.33 pbcopy'
+fi

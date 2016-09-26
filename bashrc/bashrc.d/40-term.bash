@@ -1,3 +1,8 @@
+if [ "$TERM" == "screen" ]; then
+    # override screen term
+    export TERM=xterm-256color
+fi
+
 case "$TERM" in
 xterm*|rxvt*|screen*|linux*)
 

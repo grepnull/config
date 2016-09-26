@@ -8,6 +8,9 @@ function _bash_completion() {
     if [ -f $BPREFIX/etc/bash_completion ]; then
         . $BPREFIX/etc/bash_completion
     fi
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+    fi
 }
 _bash_completion
 
@@ -29,8 +32,12 @@ _switch ()
 
 complete -F _switch switch
 
+export AUTOJUMP_KEEP_SYMLINKS=1
 if [ -f $BPREFIX/etc/autojump.sh ]; then
     . $BPREFIX/etc/autojump.sh
+fi
+if [ -f /usr/share/autojump/autojump.sh ]; then
+    . /usr/share/autojump/autojump.sh
 fi
 
 if [ -f $BPREFIX/share/python/virtualenvwrapper.sh ]; then
@@ -70,6 +77,22 @@ function gradle {
     fi
 }
 
+function git-clean-merged {
+    if [ "$(git merged)" ]; then
+        git merged
+        read -p 'Delete these branches? ' -r
+        if [ "$REPLY" == "y" ]; then
+            git branch -d $(git merged)
+        else
+            echo 'Aborted.'
+        fi
+    else
+        echo 'No merged branches to delete.';
+    fi
+
+    return 0
+}
+
 #export NVM_DIR=~/.nvm
 #source $(brew --prefix nvm)/nvm.sh
 
@@ -78,3 +101,8 @@ complete -C aws_completer aws
 
 # rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# github cli
+if command -v hub &> /dev/null; then
+    eval "$(hub alias -s)"
+fi
