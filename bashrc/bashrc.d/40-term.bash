@@ -85,7 +85,7 @@ xterm*|rxvt*|screen*|linux*)
     export GIT_PS1_SHOWSTASHSTATE=true
     export GIT_PS1_SHOWUPSTREAM="git, verbose"
 
-    PROMPT_COMMAND="update_terminal_cwd; update_title; update_prompt; update_ssh_auth_sock"
+    PROMPT_COMMAND="update_terminal_cwd; update_title; update_prompt; update_ssh_auth_sock; history -a; history -c; history -r"
     ;;
 *)
     ;;

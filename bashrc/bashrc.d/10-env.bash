@@ -32,8 +32,6 @@ if [ "${MAC_NAME}" ]; then
 
     export JYTHON_HOME=/usr/local/opt/jython/libexec/
 
-    export DOCKER_HOST=tcp://localhost:2375
-
     if command -v ant; then
         export ANT_HOME=`dirname $(dirname $(greadlink -f $(which ant)))`
     fi

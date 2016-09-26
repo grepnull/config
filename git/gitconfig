@@ -16,7 +16,7 @@
         switch = !switch $1
         sw = !switch $1
         sui = submodule update --init
-	lg = log --name-status --date=local
+	lg = log --name-status --date=local -8000
         aliases = "!git config -l | grep alias | cut -c 7-"
 	ksreview = "!f() { local SHA=${1:-HEAD}; local BRANCH=${2:-master}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool -y -t Kaleidoscope $BRANCH...$SHA; }; f"
 	br = branch -vv
@@ -63,5 +63,3 @@
 	nobackmerge = yes
 [fetch]
 	prune = true
-[url "git@github.com:"]
-	insteadOf = https://github.com/

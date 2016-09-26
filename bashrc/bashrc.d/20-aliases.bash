@@ -25,3 +25,4 @@ alias d=docker
 alias dm=docker-machine
 alias dc=docker-compose
 alias ds=docker-swarm
+alias ssh="assh wrapper ssh"
