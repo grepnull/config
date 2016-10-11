@@ -44,5 +44,9 @@ fi
 
 export ACK_OPTIONS="--ignore-dir=.eggs --ignore-dir=.tox"
 
+# enable colors in `ls`
+export CLICOLOR=1 # for macs
+export LS_COLOR=auto # linux
+
 export GOPATH=~/.go
 append_path $GOPATH/bin

@@ -1,4 +1,3 @@
-alias ls='ls -G'
 alias lt='ll -tr'
 alias mod='lt | tail'
 alias t='tail'
