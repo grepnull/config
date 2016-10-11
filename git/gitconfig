@@ -6,6 +6,7 @@
     excludesfile = /Users/vince/.gitignore_global
     ignorecase = true
     whitespace = trailing-space,space-before-tab,tab-in-indent,tabwidth=3
+    pager = less -+F -+X
 [difftool "sourcetree"]
     cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 [mergetool "sourcetree"]
