@@ -31,6 +31,6 @@ fi
 if command -v ack-grep &> /dev/null; then
     # not on a mac
     alias ack=ack-grep
-    alias pbpaste='ssh 172.16.131.33 pbpaste'
-    alias pbcopy='ssh 172.16.131.33 pbcopy'
+#    alias pbpaste='ssh 172.16.131.33 pbpaste'
+#    alias pbcopy='ssh 172.16.131.33 pbcopy'
 fi

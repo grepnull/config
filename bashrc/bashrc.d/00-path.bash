@@ -4,7 +4,6 @@ function append_path() {
 
     for part in `echo ${!var} | tr ':' ' '`; do
         if [ "$part" = $value ]; then
-            echo $value
             return;
         fi
     done
