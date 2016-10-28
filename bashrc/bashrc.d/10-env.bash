@@ -50,3 +50,5 @@ export LS_COLOR=auto # linux
 
 export GOPATH=~/.go
 append_path $GOPATH/bin
+
+export MOSH_TITLE_NOPREFIX=1
