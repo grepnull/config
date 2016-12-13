@@ -10,3 +10,5 @@
 (add-to-list 'auto-mode-alist '("\\.css$" . css-mode))
 
 (global-git-commit-mode)
+
+(add-hook 'terraform-mode-hook 'terraform-format-on-save-mode)
