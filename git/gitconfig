@@ -6,7 +6,7 @@
     statusHints = false
     detachedHead = false
 [core]
-    excludesfile = /Users/vince/.gitignore_global
+    excludesfile = ~/.gitignore_global
     ignorecase = true
     whitespace = trailing-space,space-before-tab,tab-in-indent,tabwidth=3
     pager = less -+F -+X
