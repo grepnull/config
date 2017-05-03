@@ -5,3 +5,5 @@
 .gradle
 .autoDep*
 .DS_Store
+.stfolder
+.stignore*
