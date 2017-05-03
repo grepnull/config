@@ -55,3 +55,7 @@ export MOSH_TITLE_NOPREFIX=1
 
 # disable ctrl-s/ctrl-q nonsense
 stty -ixon
+
+if [ -f ~/.secrets.sh ]; then
+    source ~/.secrets.sh
+fi

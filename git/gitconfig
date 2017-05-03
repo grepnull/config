@@ -26,8 +26,8 @@
     ksreview = "!f() { local SHA=${1:-HEAD}; local BRANCH=${2:-master}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool -y -t Kaleidoscope $BRANCH...$SHA; }; f"
     br = branch -vv --sort='committerdate'
     gi = "!gi() { curl http://www.gitignore.io/api/$@ ;}; gi"
-    merged = "!/bin/bash -c 'source /home/vince/.bashrc.d/70-git-functions.bash && git-merged'"
-    clean-merged = !/bin/bash -ci "git-clean-merged"
+    merged = "!/bin/bash -ci 'git-merged'"
+    clean-merged = "!/bin/bash -ci 'git-clean-merged'"
     push-remote = push --force-with-lease -u origin HEAD
     pf = push --force-with-lease
     del-remote = !git push --delete origin $(git rev-parse --abbrev-ref HEAD)
