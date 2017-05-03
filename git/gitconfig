@@ -2,11 +2,15 @@
     name = vince rosso
     useconfigonly = true
     email = vince@zoox.com
+[advice]
+    statusHints = false
+    detachedHead = false
 [core]
     excludesfile = /Users/vince/.gitignore_global
     ignorecase = true
     whitespace = trailing-space,space-before-tab,tab-in-indent,tabwidth=3
     pager = less -+F -+X
+    untrackedCache = true
 [difftool "sourcetree"]
     cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 [mergetool "sourcetree"]
@@ -17,13 +21,15 @@
     up = pull
     sui = submodule update --init
     lg = log --name-status --date=local -8000
+    st = status --short --branch
     aliases = "!git config -l | grep alias | cut -c 7-"
     ksreview = "!f() { local SHA=${1:-HEAD}; local BRANCH=${2:-master}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool -y -t Kaleidoscope $BRANCH...$SHA; }; f"
     br = branch -vv --sort='committerdate'
     gi = "!gi() { curl http://www.gitignore.io/api/$@ ;}; gi"
-    merged = !git branch --merged origin/master --sort='committerdate' | grep -v '\\*' | grep -Ev '^  master$'
+    merged = "!/bin/bash -c 'source /home/vince/.bashrc.d/70-git-functions.bash && git-merged'"
     clean-merged = !/bin/bash -ci "git-clean-merged"
-    push-remote = push -u origin HEAD
+    push-remote = push --force-with-lease -u origin HEAD
+    pf = push --force-with-lease
     del-remote = !git push --delete origin $(git rev-parse --abbrev-ref HEAD)
 [grep]
     lineNumber = true
@@ -47,6 +53,7 @@
     followTags = true
 [rerere]
     enabled = true
+    autoUpdate = true
 [difftool "Kaleidoscope"]
     cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [mergetool "Kaleidoscope"]
@@ -70,3 +77,7 @@
     rebase = true
 [rebase]
     autoStash = true
+[stash]
+    showPatch = true
+[gc]
+    pruneExpire = 1 week ago

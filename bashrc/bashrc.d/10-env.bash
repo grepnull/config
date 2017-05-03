@@ -52,3 +52,6 @@ export GOPATH=~/.go
 append_path $GOPATH/bin
 
 export MOSH_TITLE_NOPREFIX=1
+
+# disable ctrl-s/ctrl-q nonsense
+stty -ixon

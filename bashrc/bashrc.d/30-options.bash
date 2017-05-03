@@ -18,6 +18,7 @@ export HISTTIMEFORMAT='%F %T '
 # https://www.gnu.org/software/bash/manual/html_node/Readline-Init-File-Syntax.html
 bind 'set match-hidden-files off'
 bind 'set completion-ignore-case on'
-bind 'set completion-map-case on'
+bind 'set mark-symlinked-directories on'
+#bind 'set completion-map-case on'
 #bind 'set mark-modified-lines on'
 bind 'set show-all-if-ambiguous on'

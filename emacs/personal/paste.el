@@ -22,16 +22,16 @@
       (process-send-string proc text)
       (process-send-eof proc))))
 
-(setq interprogram-cut-function 'paste-to-osx)
+;(setq interprogram-cut-function 'paste-to-osx)
 ;(setq interprogram-paste-function 'copy-from-osx)
 
 (global-set-key (kbd "C-c C-v") '(lambda () (interactive) (insert (shell-command-to-string "pbpaste"))))
 
-(defun put-the-date ()
-  (interactive)
-  (insert (shell-command-to-string "date")))
+;; (defun put-the-date ()
+;;   (interactive)
+;;   (insert (shell-command-to-string "date")))
 
-(global-set-key
- (kbd "C-c C-d")
- 'put-the-date
- )
+;; (global-set-key
+;;  (kbd "C-c C-d")
+;;  'put-the-date
+;;  )

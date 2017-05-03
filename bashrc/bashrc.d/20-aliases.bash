@@ -24,6 +24,8 @@ alias dm=docker-machine
 alias dc=docker-compose
 alias ds=docker-swarm
 
+alias terraform=terragrunt
+
 if command -v assh &> /dev/null; then
     alias ssh="assh wrapper ssh"
 fi

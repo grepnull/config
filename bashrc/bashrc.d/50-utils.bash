@@ -46,6 +46,17 @@ elif [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     . /usr/local/bin/virtualenvwrapper.sh
 fi
 
+function vimpager {
+    for var in "$@"; do
+        if [ -d "$var" ]; then
+            echo "$var is a directory. Aborting."
+            return
+        fi
+    done
+
+    /usr/local/bin/vimpager "$@"
+}
+
 # http://pempek.net/articles/2013/04/24/vpn-less-persistent-ssh-sessions/
 function rtmux {
     case "$2" in
@@ -77,20 +88,14 @@ function gradle {
     fi
 }
 
-function git-clean-merged {
-    if [ "$(git merged)" ]; then
-        git merged
-        read -p 'Delete these branches? ' -r
-        if [ "$REPLY" == "y" ]; then
-            git branch -d $(git merged)
-        else
-            echo 'Aborted.'
-        fi
-    else
-        echo 'No merged branches to delete.';
-    fi
-
-    return 0
+# https://cirw.in/blog/bracketed-paste
+# If you start seeing pasted content wrapped with 0~ and 1~ , you need to
+# disable bracketed paste mode
+function enable-bracketed-paste-mode {
+    printf '\e[?2004h'
+}
+function disable-bracketed-paste-mode {
+    printf '\e[?2004l'
 }
 
 #export NVM_DIR=~/.nvm
