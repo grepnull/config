@@ -7,3 +7,6 @@
 .DS_Store
 .stfolder
 .stignore*
+.bash-git-rc
+.pytest_cache
+node_modules/

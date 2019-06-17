@@ -1,10 +1,16 @@
 alias lt='ll -tr'
 alias mod='lt | tail'
 alias t='tail'
-alias tf='tail -F'
+alias tf='terraform'
+alias tfw='terraform workspace show'
+alias tfwl='terraform workspace list'
+alias tfws='terraform workspace select'
+alias tfwn='terraform workspace new'
 alias grep='grep --color=auto --exclude "*.svn*"'
 alias mi="make interactive"
 alias svnu='svn up --ignore-externals'
+alias wo='workon $(basename $PWD)'
+
 function svns() {
    local dir=$1
    svn status --ignore-externals ${dir} | grep -v ^X
@@ -14,17 +20,13 @@ if [ $PAGER ]; then
     alias less=$PAGER
     alias zless=$PAGER
 fi
-alias e='emacsclient -t'
-alias ip='/usr/local/share/python/ipython --colors LightBG'
-function f () { find -L $@| grep -v \\.svn ; }
+alias e='emacs'
 
-alias emacs=$EDITOR
+#alias emacs=$EDITOR
 alias d=docker
 alias dm=docker-machine
 alias dc=docker-compose
 alias ds=docker-swarm
-
-alias terraform=terragrunt
 
 if command -v assh &> /dev/null; then
     alias ssh="assh wrapper ssh"
@@ -36,3 +38,4 @@ if command -v ack-grep &> /dev/null; then
 #    alias pbpaste='ssh 172.16.131.33 pbpaste'
 #    alias pbcopy='ssh 172.16.131.33 pbcopy'
 fi
+alias https='http --default-scheme=https'

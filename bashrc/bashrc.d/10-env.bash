@@ -1,9 +1,9 @@
-export EDITOR='vi'
-if command -v emacsclient &> /dev/null; then
-    export EDITOR='emacsclient -t -a vi'
-elif command -v emacs &> /dev/null; then
-    export EDITOR='emacs -nw'
-fi
+export EDITOR='emacs'
+#if command -v emacsclient &> /dev/null; then
+#    export EDITOR='TERM=xterm-24bit emacsclient -t -a vi'
+#elif command -v emacs &> /dev/null; then
+#    export EDITOR='emacs -nw'
+#fi
 
 # export TZ='US/Pacific'
 # enable syntax highlighting for less

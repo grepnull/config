@@ -11,6 +11,7 @@
     whitespace = trailing-space,space-before-tab,tab-in-indent,tabwidth=3
     pager = less -+F -+X
     untrackedCache = true
+	preloadindex = true
 [difftool "sourcetree"]
     cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 [mergetool "sourcetree"]
@@ -81,3 +82,8 @@
     showPatch = true
 [gc]
     pruneExpire = 1 week ago
+[hub]
+	host = git.zooxlabs.com
+[pack]
+	threads = 36
+	writeBitmapHashCache = true

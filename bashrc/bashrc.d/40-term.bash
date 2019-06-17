@@ -1,6 +1,6 @@
 if [ "$TERM" == "screen" ]; then
     # override screen term
-    export TERM=screen-256color
+    export TERM=xterm-256color
 fi
 
 case "$TERM" in
@@ -84,13 +84,27 @@ xterm*|rxvt*|screen*|linux*)
         fi
     }
 
-    # __git_ps1 options
-    export GIT_PS1_SHOWDIRTYSTATE=true
-    export GIT_PS1_SHOWUNTRACKEDFILES=true
-    export GIT_PS1_SHOWSTASHSTATE=true
-    export GIT_PS1_SHOWUPSTREAM="git, verbose"
+    if [ -e $HOME/.bash-git-prompt/gitprompt.sh ]; then
+        function prompt_callback {
+            local ORANGE=$(256_color 215)
+            if [ -f .terraform/environment ]; then
+                echo -n " ${ORANGE}($(cat .terraform/environment))${ResetColor}"
+            fi
+        }
+        GIT_PROMPT_THEME=Single_line_Solarized_Lamda
+        GIT_PROMPT_SHOW_UNTRACKED_FILES=no
+        source $HOME/.bash-git-prompt/gitprompt.sh
+        #PROMPT_COMMAND_PREFIX="date -Ins; "
+        PROMPT_COMMAND="$PROMPT_COMMAND_PREFIX $PROMPT_COMMAND; $PROMPT_COMMAND_PREFIX update_terminal_cwd; $PROMPT_COMMAND_PREFIX update_title; $PROMPT_COMMAND_PREFIX update_ssh_auth_sock; $PROMPT_COMMAND_PREFIX history -a"
+    else
+        # __git_ps1 options
+        export GIT_PS1_SHOWDIRTYSTATE=true
+        export GIT_PS1_SHOWUNTRACKEDFILES=true
+        export GIT_PS1_SHOWSTASHSTATE=true
+        export GIT_PS1_SHOWUPSTREAM="git, verbose"
 
-    PROMPT_COMMAND="update_terminal_cwd; update_title; update_prompt; update_ssh_auth_sock; history -a"
+        PROMPT_COMMAND="update_terminal_cwd; update_title; update_prompt; update_ssh_auth_sock; history -a"
+    fi
     ;;
 *)
     ;;
