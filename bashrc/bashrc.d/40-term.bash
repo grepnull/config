@@ -91,8 +91,14 @@ xterm*|rxvt*|screen*|linux*)
                 echo -n " ${ORANGE}($(cat .terraform/environment))${ResetColor}"
             fi
         }
-        GIT_PROMPT_THEME=Single_line_Solarized_Lamda
-        GIT_PROMPT_SHOW_UNTRACKED_FILES=no
+        GIT_PROMPT_SHOW_UPSTREAM=no
+        GIT_PROMPT_SHOW_UNTRACKED_FILES=normal
+        GIT_PROMPT_THEME=Single_line_Solarized_Lamda    
+        if [[ "$MAC_NAME" ]]; then
+            GIT_PROMPT_THEME=Single_line_Solarized_Lamda
+        else
+            GIT_PROMPT_THEME=Solarized_UserHost
+        fi
         source $HOME/.bash-git-prompt/gitprompt.sh
         #PROMPT_COMMAND_PREFIX="date -Ins; "
         PROMPT_COMMAND="$PROMPT_COMMAND_PREFIX $PROMPT_COMMAND; $PROMPT_COMMAND_PREFIX update_terminal_cwd; $PROMPT_COMMAND_PREFIX update_title; $PROMPT_COMMAND_PREFIX update_ssh_auth_sock; $PROMPT_COMMAND_PREFIX history -a"
