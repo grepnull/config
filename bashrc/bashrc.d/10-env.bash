@@ -23,7 +23,7 @@ fi
 
 if [ "${MAC_NAME}" ]; then
     ### Java on the Mac ###
-    export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+    export JAVA_HOME=`/usr/libexec/java_home`
     # Groovy on the mac defaults to MacRoman encoding
     export JAVA_OPTS=-Dfile.encoding=UTF-8
 
