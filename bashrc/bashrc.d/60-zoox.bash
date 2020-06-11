@@ -1,4 +1,4 @@
-if [ -z "$MAC_NAME" ]; then
+if [[ -f ~/driving/scripts/shell/zooxrc.sh ]]; then
     source ~/driving/scripts/shell/zooxrc.sh
 fi
 

@@ -2,11 +2,16 @@
 [ $(which lesspipe) ] && eval "$(lesspipe)"
 [ $(which lesspipe.sh) ] && eval "$(lesspipe.sh)"
 
-[ $(which brew) ] && BPREFIX=`brew --prefix`
+[ $(which brew) ] && BPREFIX=$(brew --prefix)
 
 function _bash_completion() {
     if [ -f $BPREFIX/etc/bash_completion ]; then
         . $BPREFIX/etc/bash_completion
+    fi
+    if [[ -d $BPREFIX/etc/bash_completion.d ]]; then
+        for f in $BPREFIX/etc/bash_completion.d/* ; do
+            source "$f"
+        done;
     fi
     if [ -f /usr/share/bash-completion/bash_completion ]; then
         . /usr/share/bash-completion/bash_completion

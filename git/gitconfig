@@ -84,6 +84,7 @@
     pruneExpire = 1 week ago
 [hub]
 	host = git.zooxlabs.com
+	host = git.zooxlabs.com
 [pack]
 	threads = 36
 	writeBitmapHashCache = true
