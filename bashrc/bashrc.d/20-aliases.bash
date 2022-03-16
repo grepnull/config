@@ -29,7 +29,7 @@ alias dc=docker-compose
 alias ds=docker-swarm
 
 if command -v assh &> /dev/null; then
-    alias ssh="assh wrapper ssh"
+    alias ssh="$(which assh) wrapper ssh"
 fi
 
 if command -v ack-grep &> /dev/null; then

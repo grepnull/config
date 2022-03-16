@@ -49,6 +49,12 @@ append_path /usr/kerberos/man MANPATH
 append_path ~/Work/bin PATH
 append_path ~/Documents/bin PATH
 #append_path /usr/local/share/python PATH
+if which ruby >/dev/null && which gem >/dev/null && [ ! -s "$HOME/.rvm/scripts/rvm" ]; then
+    #append_path /usr/local/opt/ruby/bin PATH # what was this for?
+
+    # if we don't have rvm, add ruby's gems to PATH
+    append_path "$(ruby -e 'puts Gem.user_dir')/bin"
+fi
 prepend_path /usr/local/bin PATH
 prepend_path /usr/local/sbin PATH
 prepend_path /opt/alternatives/bin PATH
