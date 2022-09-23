@@ -23,18 +23,14 @@ fi
 
 if [ "${MAC_NAME}" ]; then
     ### Java on the Mac ###
-    export JAVA_HOME=`/usr/libexec/java_home`
+    #export JAVA_HOME=`/usr/libexec/java_home`
     # Groovy on the mac defaults to MacRoman encoding
-    export JAVA_OPTS=-Dfile.encoding=UTF-8
+    #export JAVA_OPTS=-Dfile.encoding=UTF-8
 
-    export HOMEBREW_TEMP=/var/tmp
-    export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+    #export HOMEBREW_TEMP=/var/tmp
+    #export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
-    export JYTHON_HOME=/usr/local/opt/jython/libexec/
-
-    if command -v ant; then
-        export ANT_HOME=`dirname $(dirname $(greadlink -f $(which ant)))`
-    fi
+    #export JYTHON_HOME=/usr/local/opt/jython/libexec/
 
     export ITERM_PANE_INDEX=$(($(echo $ITERM_SESSION_ID | sed -e "s/^.*p\(.*\):.*/\1/") - 1))
     export ITI=$ITERM_PANE_INDEX
