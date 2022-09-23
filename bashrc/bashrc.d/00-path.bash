@@ -75,7 +75,8 @@ if shopt -q login_shell; then
         eval $($HOMEBREW_PREFIX/bin/brew shellenv)
     fi
 
-    prepend_path $HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin PATH  ## To use brew's coreutils (e.g. readlink)    prepend_path ~/.local/bin PATH
+    prepend_path $HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin PATH  ## To use brew's coreutils (e.g. readlink)
+    prepend_path ~/.local/bin PATH
     prepend_path ~/bin PATH
 
     # if we don't have rvm, add ruby's gems to PATH

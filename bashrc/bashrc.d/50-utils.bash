@@ -3,16 +3,20 @@
 [ $(which lesspipe.sh) ] && eval "$(lesspipe.sh)"
 
 function _bash_completion() {
+    # The ones in /etc/bash_completion.d
+    # (on 14.04 at least) are not compatible.
+    # Do not source them.
+    # You will get errors like 'have: command not found'
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+    fi
     if [ -f $HOMEBREW_PREFIX/etc/bash_completion ]; then
         . $HOMEBREW_PREFIX/etc/bash_completion
     fi
-    if [[ -d $BPREFIX/etc/bash_completion.d ]]; then
-        for f in $BPREFIX/etc/bash_completion.d/* ; do
+    if [[ -d $HOMEBREW_PREFIX/etc/bash_completion.d ]]; then
+        for f in $HOMEBREW_PREFIX/etc/bash_completion.d/* ; do
             source "$f"
         done;
-    fi
-    if [ -f /usr/share/bash-completion/bash_completion ]; then
-        . /usr/share/bash-completion/bash_completion
     fi
 }
 _bash_completion
@@ -22,8 +26,8 @@ if [ -f $HOMEBREW_PREFIX/etc/autojump.sh ]; then
     . $HOMEBREW_PREFIX/etc/autojump.sh
 fi
 
-if command -v virtualenvwrapper.sh; then
-    echo . $(which virtualenvwrapper.sh)
+if command -v virtualenvwrapper.sh > /dev/null; then
+    . $(which virtualenvwrapper.sh)
 fi
 
 
@@ -55,7 +59,7 @@ if command -v hub &> /dev/null; then
 fi
 
 # pyenv
-if command -v pyenv; then
+if command -v pyenv > /dev/null; then
     export PYENV_ROOT="$HOME/.pyenv"
     export PATH="$PYENV_ROOT/bin:$PATH"
 
