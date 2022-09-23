@@ -22,8 +22,8 @@ if [ -f $HOMEBREW_PREFIX/etc/autojump.sh ]; then
     . $HOMEBREW_PREFIX/etc/autojump.sh
 fi
 
-if [ -f $(which virtualenvwrapper.sh) ]; then
-    . $(which virtualenvwrapper.sh)
+if command -v virtualenvwrapper.sh; then
+    echo . $(which virtualenvwrapper.sh)
 fi
 
 
@@ -55,10 +55,12 @@ if command -v hub &> /dev/null; then
 fi
 
 # pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
 
-eval "$(pyenv init --path)"
+    eval "$(pyenv init --path)"
+fi
 
 # terraform
 complete -C $(which terraform) terraform tf
