@@ -3,7 +3,7 @@
     useconfigonly = true
     email = vince@zoox.com
 [advice]
-    statusHints = false
+    statusHints = true
     detachedHead = false
 [core]
     excludesfile = ~/.gitignore_global
@@ -12,6 +12,9 @@
     pager = less -+F -+X
     untrackedCache = true
 	preloadindex = true
+	fsmonitor = true
+[index]
+	version=4
 [difftool "sourcetree"]
     cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 [mergetool "sourcetree"]
@@ -88,3 +91,15 @@
 [pack]
 	threads = 36
 	writeBitmapHashCache = true
+[url "git@git.zooxlabs.com:"]
+	insteadOf = https://git.zooxlabs.com/
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[feature]
+	manyFiles = true
+	
+[maintenance]
+	repo = /home/vince/driving
