@@ -11,6 +11,10 @@ alias mi="make interactive"
 alias svnu='svn up --ignore-externals'
 alias wo='workon $(basename $PWD)'
 
+# Avoid printing lines that are super long (e.g. minified JS)
+# that will overwhelm terminals with scrolling texts for a long time.
+alias ag='ag -W300'
+
 function svns() {
    local dir=$1
    svn status --ignore-externals ${dir} | grep -v ^X

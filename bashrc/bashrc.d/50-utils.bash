@@ -2,11 +2,9 @@
 [ $(which lesspipe) ] && eval "$(lesspipe)"
 [ $(which lesspipe.sh) ] && eval "$(lesspipe.sh)"
 
-[ $(which brew) ] && BPREFIX=$(brew --prefix)
-
 function _bash_completion() {
-    if [ -f $BPREFIX/etc/bash_completion ]; then
-        . $BPREFIX/etc/bash_completion
+    if [ -f $HOMEBREW_PREFIX/etc/bash_completion ]; then
+        . $HOMEBREW_PREFIX/etc/bash_completion
     fi
     if [[ -d $BPREFIX/etc/bash_completion.d ]]; then
         for f in $BPREFIX/etc/bash_completion.d/* ; do
@@ -19,79 +17,15 @@ function _bash_completion() {
 }
 _bash_completion
 
-_git_switch ()
-{
-    __gitcomp_nl "$(__git_refs '' 1)"
-}
-
-_git_sw ()
-{
-    __gitcomp_nl "$(__git_refs '' 1)"
-}
-
-_switch ()
-{
-    COMPREPLY=( $(compgen -W "$(__git_refs)" -- ${cur}) )
-    return 0
-}
-
-complete -F _switch switch
-
 export AUTOJUMP_KEEP_SYMLINKS=1
-if [ -f $BPREFIX/etc/autojump.sh ]; then
-    . $BPREFIX/etc/autojump.sh
-fi
-if [ -f /usr/share/autojump/autojump.sh ]; then
-    . /usr/share/autojump/autojump.sh
+if [ -f $HOMEBREW_PREFIX/etc/autojump.sh ]; then
+    . $HOMEBREW_PREFIX/etc/autojump.sh
 fi
 
-if [ -f $BPREFIX/share/python/virtualenvwrapper.sh ]; then
-    . $BPREFIX/share/python/virtualenvwrapper.sh
-elif [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-    . /usr/local/bin/virtualenvwrapper.sh
+if [ -f $(which virtualenvwrapper.sh) ]; then
+    . $(which virtualenvwrapper.sh)
 fi
 
-function vimpager {
-    for var in "$@"; do
-        if [ -d "$var" ]; then
-            echo "$var is a directory. Aborting."
-            return
-        fi
-    done
-
-    /usr/local/bin/vimpager "$@"
-}
-
-# http://pempek.net/articles/2013/04/24/vpn-less-persistent-ssh-sessions/
-function rtmux {
-    case "$2" in
-        "") autossh -M 0 $1 -t "if tmux -qu has; then tmux -qu attach; else EDITOR=vim tmux -qu new; fi";;
-        *) autossh -M 0 $1 -t "if tmux -qu has -t $2; then tmux -qu attach -t $2; else EDITOR=vim tmux -qu new -s $2; fi";;
-    esac
-}
-
-function dock {
-    if [ "$1" == "-h" ]; then
-        echo "Usage: dock NAME [--swarm]"
-        echo ""
-        echo "NAME: name of docker-machine (Default: local)"
-        echo "--swarm: machine is a swarm"
-        return
-    fi
-    local MACHINE=${1:-local}
-    echo "Switching to docker machine $MACHINE"
-    eval $(docker-machine env $MACHINE $2)
-}
-
-function gradle {
-    if [ -e ./gradlew ]; then
-        echo "Using gradle wrapper..."
-        ./gradlew $@
-    else
-        echo "Using global gradle..."
-        /usr/local/bin/gradle $@
-    fi
-}
 
 # https://cirw.in/blog/bracketed-paste
 # If you start seeing pasted content wrapped with 0~ and 1~ , you need to
@@ -105,6 +39,9 @@ function disable-bracketed-paste-mode {
 
 #export NVM_DIR=~/.nvm
 #source $(brew --prefix nvm)/nvm.sh
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # for awscli
 complete -C aws_completer aws
@@ -116,3 +53,12 @@ complete -C aws_completer aws
 if command -v hub &> /dev/null; then
     eval "$(hub alias -s)"
 fi
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+eval "$(pyenv init --path)"
+
+# terraform
+complete -C $(which terraform) terraform tf

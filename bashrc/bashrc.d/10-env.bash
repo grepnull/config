@@ -51,6 +51,11 @@ append_path $GOPATH/bin
 
 export MOSH_TITLE_NOPREFIX=1
 
+TF_PARALLELISM=50
+export TF_CLI_ARGS_plan="-parallelism=${TF_PARALLELISM}"
+export TF_CLI_ARGS_apply="-parallelism=${TF_PARALLELISM}"
+export TF_CLI_ARGS_destroy="-parallelism=${TF_PARALLELISM}"
+
 # disable ctrl-s/ctrl-q nonsense
 stty -ixon
 
