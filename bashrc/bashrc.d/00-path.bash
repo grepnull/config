@@ -44,7 +44,6 @@ function prepend_path() {
 # Only mess with the PATH on login shells.
 # non-login shells will inherit from their login shell.
 if shopt -q login_shell; then
-
     append_path /usr/share/man MANPATH
     append_path /usr/man MANPATH
     append_path /usr/local/share/man MANPATH

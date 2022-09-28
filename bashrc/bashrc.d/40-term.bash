@@ -93,7 +93,7 @@ xterm*|rxvt*|screen*|linux*)
         }
         GIT_PROMPT_SHOW_UPSTREAM=no
         GIT_PROMPT_SHOW_UNTRACKED_FILES=normal
-        GIT_PROMPT_THEME=Single_line_Solarized_Lamda    
+        GIT_PROMPT_THEME=Single_line_Solarized_Lamda
         if [[ "$MAC_NAME" ]]; then
             GIT_PROMPT_THEME=Single_line_Solarized_Lamda
         else

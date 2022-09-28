@@ -10,14 +10,7 @@ function _bash_completion() {
     if [ -f /usr/share/bash-completion/bash_completion ]; then
         . /usr/share/bash-completion/bash_completion
     fi
-    if [ -f $HOMEBREW_PREFIX/etc/bash_completion ]; then
-        . $HOMEBREW_PREFIX/etc/bash_completion
-    fi
-    if [[ -d $HOMEBREW_PREFIX/etc/bash_completion.d ]]; then
-        for f in $HOMEBREW_PREFIX/etc/bash_completion.d/* ; do
-            source "$f"
-        done;
-    fi
+    [[ -r "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
 }
 _bash_completion
 
